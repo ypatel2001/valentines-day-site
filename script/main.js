@@ -46,7 +46,7 @@ const animationTimeline = () => {
         opacity: 0,
         y: 10,
       },
-      "+=2.5"
+      "+=5.5"
     )
     .to(
       ".two",
@@ -69,7 +69,7 @@ const animationTimeline = () => {
         opacity: 0,
         y: 10,
       },
-      "+=2"
+      "+=4"
     )
     .from(".four", 0.7, {
       scale: 0.2,
@@ -98,7 +98,7 @@ const animationTimeline = () => {
         opacity: 0,
         y: -150,
       },
-      "+=0.7"
+      "+=0.9"
     )
     .from(".idea-1", 0.7, ideaTextTrans)
     .to(".idea-1", 0.7, ideaTextTransLeave, "+=1.5")
@@ -125,7 +125,7 @@ const animationTimeline = () => {
         z: 10,
         opacity: 0,
       },
-      "+=0.5"
+      "+=0.7"
     )
     .to(
       ".idea-5 span",
@@ -143,7 +143,7 @@ const animationTimeline = () => {
         scale: 0.2,
         opacity: 0,
       },
-      "+=2"
+      "+=4"
     )
     .staggerFrom(
       ".idea-6 span",
@@ -166,7 +166,7 @@ const animationTimeline = () => {
         ease: Expo.easeOut,
       },
       0.2,
-      "+=1"
+      "+="
     )
     .staggerFromTo(
       ".baloons img",
@@ -302,4 +302,6 @@ const resolveFetch = () => {
   });
 };
 
-resolveFetch().then(animationTimeline());
+// Only initialize animation when called from login page
+// resolveFetch().then(animationTimeline());
+

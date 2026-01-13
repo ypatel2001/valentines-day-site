@@ -298,3 +298,110 @@ body {
     font-weight: lighter;
   }
 }
+
+/* Login Page Styles */
+.login-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  font-family: "Work Sans", sans-serif;
+}
+
+.login-container.hidden {
+  display: none;
+}
+
+.login-content {
+  text-align: center;
+  position: relative;
+  max-width: 800px;
+}
+
+.login-title {
+  font-size: 5rem;
+  margin: 0;
+  margin-bottom: 60px;
+  font-weight: 300;
+  min-height: 80px;
+  letter-spacing: 2px;
+}
+
+.login-box-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.password-input-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.password-input {
+  font-size: 3.5rem;
+  padding: 30px 40px;
+  border: none;
+  border-bottom: 4px solid #333;
+  background-color: transparent;
+  text-align: center;
+  width: 400px;
+  font-family: "Work Sans", sans-serif;
+  outline: none;
+  letter-spacing: 8px;
+  transition: border-color 0.3s ease;
+}
+
+.password-input::placeholder {
+  color: #ccc;
+  letter-spacing: 0;
+  font-size: 2rem;
+}
+
+.password-input:focus {
+  border-bottom-color: #666;
+}
+
+/* Remove blinking cursor */
+.cursor-blink {
+  display: none; /* Hide the blinking cursor */
+}
+
+/* Adjust hint button position */
+.hint-button {
+  width: 150px; /* Keep the reduced size */
+  height: 20px;
+  font-size: 0.8rem;
+  right: auto; /* Reset right positioning */
+  top: auto; /* Reset top positioning */
+  transform: none; /* Remove transform */
+  margin: 10px auto 0; /* Center below the input box */
+  display: block; /* Ensure it appears as a block element */
+  background-color: plum;
+  color: black;
+}
+
+.hint-button:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.hint-text {
+  margin-top: 50px;
+  font-size: 1.5rem;
+  color: #666;
+  min-height: 30px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.hint-text.show {
+  opacity: 1;
+}
+
