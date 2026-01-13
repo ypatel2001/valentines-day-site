@@ -330,6 +330,7 @@ const showValentinePrompt = () => {
     promptDiv.style.display = 'none';
     responseDiv.style.display = 'block';
     tryAgainBtn.style.display = 'block';
+    tryAgainBtn.textContent = 'Try Again!';
     responseDiv.innerHTML = "That's okay, I'll win you over! 😉";
     responseDiv.style.color = '#888';
   };
