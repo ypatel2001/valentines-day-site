@@ -273,26 +273,32 @@ const animationTimeline = () => {
 // Type out the heartfelt message with cursor effect
 const typeHeartfeltMessage = () => {
   const messageDiv = document.getElementById('heartfeltMessage');
-  const cursor = document.getElementById('messageCursor');
   messageDiv.innerHTML = ''; // Clear any existing content
-  messageDiv.appendChild(cursor); // Add cursor to start
   let charIndex = 0;
   
   const typeChar = () => {
     if (charIndex < heartfeltMessage.length) {
-      const char = heartfeltMessage[charIndex];
-      // Insert text before the cursor
-      messageDiv.insertBefore(document.createTextNode(char), cursor);
+      messageDiv.innerHTML = ''; // Clear
+      // Add the text typed so far using textContent (safe)
+      const textNode = document.createTextNode(heartfeltMessage.substring(0, charIndex + 1));
+      messageDiv.appendChild(textNode);
+      
+      // Add the blinking cursor
+      const cursor = document.createElement('span');
+      cursor.className = 'message-cursor';
+      cursor.style.display = 'inline';
+      cursor.textContent = '|';
+      messageDiv.appendChild(cursor);
+      
       charIndex++;
       setTimeout(typeChar, 30); // Typing speed
     } else {
       // Remove cursor when done typing
-      cursor.remove();
+      messageDiv.innerHTML = '';
+      messageDiv.textContent = heartfeltMessage;
     }
   };
   
-  // Show cursor and start typing
-  cursor.style.display = 'inline';
   typeChar();
 };
 
