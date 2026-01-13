@@ -167,10 +167,15 @@
         </svg>
       </div>
       <div class="nine">
-        <p>Okay, now come back and tell me if you liked it.</p>
-        <p id="replay">Or click, if you want to watch it again.</p>
-        <p class="last-smile">:)</p>
-        <p>https://github.com/swapniltake1/valentine-day-special </p>
+        <div id="heartfeltMessage" class="heartfelt-message" style="font-size: 1.3rem; line-height: 1.8; margin-bottom: 40px; min-height: 150px;"></div>
+        <div id="valentinePrompt" class="valentine-prompt" style="display:none;">
+          <h2 style="font-size: 2.5rem; margin-bottom: 30px;">Will you be my Valentine?</h2>
+          <div class="valentine-buttons">
+            <button id="valentineYes" class="valentine-btn valentine-yes">Yes ❤️</button>
+            <button id="valentineNo" class="valentine-btn valentine-no">No 😅</button>
+          </div>
+        </div>
+        <div id="valentineResponse" style="display:none; font-size: 2rem; margin-top: 30px;"></div>
       </div>
     </div>
     <script>

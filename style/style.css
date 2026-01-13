@@ -405,3 +405,52 @@ body {
   opacity: 1;
 }
 
+/* Valentine buttons styling */
+.valentine-buttons {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.valentine-btn {
+  padding: 15px 40px;
+  font-size: 1.3rem;
+  border: 3px solid #333;
+  border-radius: 50px;
+  background-color: white;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.valentine-yes {
+  background-color: #ff1493;
+  color: white;
+  border-color: #ff1493;
+}
+
+.valentine-yes:hover {
+  transform: scale(1.1);
+  box-shadow: 0 5px 15px rgba(255, 20, 147, 0.4);
+}
+
+.valentine-no {
+  background-color: transparent;
+  color: #333;
+  border-color: #333;
+}
+
+.valentine-no:hover {
+  background-color: #f0f0f0;
+  transform: scale(1.05);
+}
+
+.heartfelt-message {
+  color: #333;
+  font-weight: 300;
+}
+
+

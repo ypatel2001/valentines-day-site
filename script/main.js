@@ -1,3 +1,6 @@
+// Heartfelt message for timeline
+const heartfeltMessage = "You know, meeting you was like finding a reason to smile every single day. You make everything feel special, and I'm so grateful for that. Thank you for being you.";
+
 // Animation Timeline
 const animationTimeline = () => {
   // Spit chars that needs to be animated individually
@@ -255,24 +258,64 @@ const animationTimeline = () => {
       y: 30,
       zIndex: "-1",
     })
-    .staggerFrom(".nine p", 1, ideaTextTrans, 1.2)
-    .to(
-      ".last-smile",
-      0.5,
-      {
-        rotation: 90,
-      },
-      "+=1"
-    );
+    .from(".nine", 0.7, {
+      opacity: 0,
+      y: 10,
+    })
+    .call(typeHeartfeltMessage, null, this, 0)
+    .to({}, 3, {}, "+=2")
+    .call(showValentinePrompt, null, this, 0);
 
   // tl.seek("currentStep");
   // tl.timeScale(2);
+};
 
-  // Restart Animation on click
-  const replyBtn = document.getElementById("replay");
-  replyBtn.addEventListener("click", () => {
-    tl.restart();
-  });
+// Type out the heartfelt message
+const typeHeartfeltMessage = () => {
+  const messageDiv = document.getElementById('heartfeltMessage');
+  messageDiv.innerHTML = ''; // Clear any existing content
+  let charIndex = 0;
+  
+  const typeChar = () => {
+    if (charIndex < heartfeltMessage.length) {
+      const char = heartfeltMessage[charIndex];
+      messageDiv.innerHTML += char;
+      charIndex++;
+      setTimeout(typeChar, 30); // Typing speed
+    }
+  };
+  
+  typeChar();
+};
+
+// Show the Valentine prompt
+const showValentinePrompt = () => {
+  const promptDiv = document.getElementById('valentinePrompt');
+  promptDiv.style.display = 'block';
+  promptDiv.style.opacity = '0';
+  promptDiv.style.transition = 'opacity 0.5s ease';
+  setTimeout(() => {
+    promptDiv.style.opacity = '1';
+  }, 50);
+  
+  // Setup button handlers
+  const yesBtn = document.getElementById('valentineYes');
+  const noBtn = document.getElementById('valentineNo');
+  const responseDiv = document.getElementById('valentineResponse');
+  
+  yesBtn.onclick = () => {
+    promptDiv.style.display = 'none';
+    responseDiv.style.display = 'block';
+    responseDiv.innerHTML = '❤️ You just made me the happiest! ❤️';
+    responseDiv.style.color = '#ff1493';
+  };
+  
+  noBtn.onclick = () => {
+    promptDiv.style.display = 'none';
+    responseDiv.style.display = 'block';
+    responseDiv.innerHTML = "That's okay, I'll win you over! 😉";
+    responseDiv.style.color = '#888';
+  };
 };
 
 // Import the data to customize and insert them into page
