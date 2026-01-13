@@ -270,21 +270,29 @@ const animationTimeline = () => {
   // tl.timeScale(2);
 };
 
-// Type out the heartfelt message
+// Type out the heartfelt message with cursor effect
 const typeHeartfeltMessage = () => {
   const messageDiv = document.getElementById('heartfeltMessage');
+  const cursor = document.getElementById('messageCursor');
   messageDiv.innerHTML = ''; // Clear any existing content
+  messageDiv.appendChild(cursor); // Add cursor to start
   let charIndex = 0;
   
   const typeChar = () => {
     if (charIndex < heartfeltMessage.length) {
       const char = heartfeltMessage[charIndex];
-      messageDiv.innerHTML += char;
+      // Insert text before the cursor
+      messageDiv.insertBefore(document.createTextNode(char), cursor);
       charIndex++;
       setTimeout(typeChar, 30); // Typing speed
+    } else {
+      // Remove cursor when done typing
+      cursor.remove();
     }
   };
   
+  // Show cursor and start typing
+  cursor.style.display = 'inline';
   typeChar();
 };
 
@@ -302,10 +310,12 @@ const showValentinePrompt = () => {
   const yesBtn = document.getElementById('valentineYes');
   const noBtn = document.getElementById('valentineNo');
   const responseDiv = document.getElementById('valentineResponse');
+  const tryAgainBtn = document.getElementById('tryAgainBtn');
   
   yesBtn.onclick = () => {
     promptDiv.style.display = 'none';
     responseDiv.style.display = 'block';
+    tryAgainBtn.style.display = 'none';
     responseDiv.innerHTML = '❤️ You just made me the happiest! ❤️';
     responseDiv.style.color = '#ff1493';
   };
@@ -313,8 +323,15 @@ const showValentinePrompt = () => {
   noBtn.onclick = () => {
     promptDiv.style.display = 'none';
     responseDiv.style.display = 'block';
+    tryAgainBtn.style.display = 'block';
     responseDiv.innerHTML = "That's okay, I'll win you over! 😉";
     responseDiv.style.color = '#888';
+  };
+  
+  tryAgainBtn.onclick = () => {
+    promptDiv.style.display = 'block';
+    responseDiv.style.display = 'none';
+    tryAgainBtn.style.display = 'none';
   };
 };
 
