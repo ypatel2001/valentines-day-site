@@ -319,11 +319,42 @@ const showValentinePrompt = () => {
   const tryAgainBtn = document.getElementById('tryAgainBtn');
   
   yesBtn.onclick = () => {
+    // Hide the prompt
     promptDiv.style.display = 'none';
+    // Force responseDiv to be visible and clear any previous content
     responseDiv.style.display = 'block';
-    tryAgainBtn.style.display = 'none';
-    responseDiv.innerHTML = '❤️ You just made me the happiest! ❤️';
+    responseDiv.style.visibility = 'visible';
+    responseDiv.innerHTML = '';
+    // Insert the prompt and textarea
+    responseDiv.innerHTML = `❤️ You just made me the happiest! ❤️<br><br>
+      <h2 style="font-size:2rem; color:#ff1493; margin-top:30px;">EEEEEEEKKKK Please write your response below:</h2>
+      <textarea id="valentineInput" rows="4" cols="50" placeholder="Type your response here..." style="width:100%;max-width:600px;padding:15px 20px;font-size:1.1rem;border:3px solid #ff1493;border-radius:10px;background-color:#fff;color:#333;font-family:'Work Sans',sans-serif;resize:vertical;min-height:120px;outline:none;transition:all 0.3s ease;box-sizing:border-box;margin-top:20px;"></textarea>
+      <br>
+      <button id="submitResponseBtn" class="valentine-btn valentine-yes" style="margin-top:20px;">Submit Response</button>
+      <div id="responseStatus" style="margin-top:20px;font-size:1.2rem;"></div>
+    `;
     responseDiv.style.color = '#ff1493';
+
+    // Setup submit button handler
+    setTimeout(() => {
+      const submitBtn = document.getElementById('submitResponseBtn');
+      const input = document.getElementById('valentineInput');
+      const statusDiv = document.getElementById('responseStatus');
+      submitBtn.onclick = () => {
+        const val = input.value.trim();
+        if (!val) {
+          statusDiv.textContent = 'Please write something before submitting!';
+          statusDiv.style.color = '#ff6b6b';
+          return;
+        }
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = '0.6';
+        submitBtn.style.cursor = 'not-allowed';
+        statusDiv.textContent = '✨ Ready to save to DB soon... ✨';
+        statusDiv.style.color = '#333';
+        // DB integration will go here
+      };
+    }, 100);
   };
   
   noBtn.onclick = () => {
