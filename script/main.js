@@ -1,6 +1,6 @@
 // Heartfelt message for timeline
 const heartfeltMessage = "You know, meeting you was like finding a reason to smile every single day. You make everything feel special, and I'm so grateful for that. Thank you for being you.";
-
+//re_Nn9BdT9E_6tk4YRynVEQe8r1SfzNekzVP
 // Animation Timeline
 const animationTimeline = () => {
   // Spit chars that needs to be animated individually
@@ -350,9 +350,33 @@ const showValentinePrompt = () => {
         submitBtn.disabled = true;
         submitBtn.style.opacity = '0.6';
         submitBtn.style.cursor = 'not-allowed';
-        statusDiv.textContent = '✨ Ready to save to DB soon... ✨';
+        statusDiv.textContent = '✨ Sending...';
         statusDiv.style.color = '#333';
-        // DB integration will go here
+
+        // POST to /api/save (works with Vercel serverless or local server if available)
+        fetch('/api/save', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text: val }),
+        })
+          .then((r) => r.json())
+          .then((d) => {
+            if (d && d.success) {
+              statusDiv.textContent = '💕 Sent! Thank you ❤️';
+              statusDiv.style.color = '#ff1493';
+              input.disabled = true;
+            } else {
+              throw new Error((d && d.error) || 'Send failed');
+            }
+          })
+          .catch((err) => {
+            console.error('Send error', err);
+            statusDiv.textContent = '❌ Error sending. Try again.';
+            statusDiv.style.color = '#ff6b6b';
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = '1';
+            submitBtn.style.cursor = 'pointer';
+          });
       };
     }, 100);
   };
